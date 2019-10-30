@@ -8,6 +8,7 @@ from pathlib import Path
 import DetectChars
 import DetectPlates
 import PossiblePlate
+import tesser
 
 SCALAR_BLACK = (0.0, 0.0, 0.0)
 SCALAR_WHITE = (255.0, 255.0, 255.0)
@@ -17,8 +18,6 @@ SCALAR_RED = (0.0, 0.0, 255.0)
 
 showSteps = False
 path=Path('LicPlateImages')
-outdict={}
-namelist=[]
 
 
 def main():
@@ -42,7 +41,10 @@ def main():
         key=str(imagepath).split('\\')
         key=str(key[-1])
         cv2.imwrite(key, ~licPlate.imgThresh)
+        
         os.chdir('..')
+        tesser.tessocr(key,licPlate.strChars)
+        
         if len(licPlate.strChars) == 0:
             print("\nno characters were detected\n\n")
             return
