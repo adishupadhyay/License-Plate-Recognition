@@ -18,6 +18,7 @@ Code tested on :
   For English, it is "eng.traineddata"
   
 ->Place "eng.traineddata" inside tessdata folder. The folder should be like:
+
     ./tessdata :
         -configs
         -tessconfigs
